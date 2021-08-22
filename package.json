@@ -1,0 +1,28 @@
+{
+  "name": "@anticore-contracts/tree-view",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "An anticore contract to switch between views.",
+  "exports": {
+    "./on.js": "./on.js",
+    "./when.js": "./when.js"
+  },
+  "author": "@anticore-contracts",
+  "license": "MIT",
+  "peerDependencies": {
+    "anticore": ">=4.5.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  },
+  "scripts": {
+    "lint": "eslint --report-unused-disable-directives ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anticore-contracts/tree-view.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anticore-contracts/tree-view/issues"
+  }
+}
