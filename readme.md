@@ -2,6 +2,10 @@
 
 An [anticore](https://github.com/Lcfvs/anticore) contract to switch between views.
 
+## Install
+
+`npm i @anticore-contracts/tree-view`
+
 ## Reminder
 
 The tree contracts should be added lastly, to improve the performances.
@@ -23,7 +27,7 @@ import '@anticore-contracts/tree-view/when.js'
 * Matches `main`
 * Picks the `title, meta[name], meta[property]`, from the root node
 * Replaces the current related elements by the new ones
-* If the match doesn't have a `.error`, it updates the history
+* If the match doesn't have a `.error`, it updates the history on new contents
 * If the url doesn't have a hash, it scrolls to `0, 0`
 * It listens the `popstate`, to restore & trigger the view elements
 

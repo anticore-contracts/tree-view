@@ -1,8 +1,8 @@
 import { listen, parse, trigger } from 'anticore'
 
-const { history } = globalThis
+const cache = new WeakMap()
 
-const has = (element, name) => element.classList.contains(name)
+const { history } = globalThis
 
 const stringify = ({ outerHTML }) => outerHTML
 
@@ -19,11 +19,12 @@ const replace = element => {
 listen('popstate', globalThis, ({ state }) => {
   const body = parse(state, globalThis.document.location.href)
 
-  body.classList.add('cached')
+  cache.set(body, true)
   trigger(body)
 })
 
 export default (main, url) => {
+  const { ownerDocument } = main
   const root = main.getRootNode()
   const body = main.closest('body')
   const title = root.querySelector('title')
@@ -32,7 +33,7 @@ export default (main, url) => {
   const sources = elements.map(stringify)
   const args = [sources.join(''), title.innerHTML, url]
 
-  if (!has(body, 'anticore')) {
+  if (ownerDocument.contains(main)) {
     history.replaceState(...args)
 
     return
@@ -40,7 +41,7 @@ export default (main, url) => {
 
   elements.forEach(replace)
 
-  if (!has(body, 'cached') && !has(main, 'error')) {
+  if (cache.has(body) || main.classList.contains('error')) {
     history.pushState(...args)
   }
 
