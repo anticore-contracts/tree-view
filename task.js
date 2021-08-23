@@ -41,7 +41,7 @@ export default (main, url) => {
 
   elements.forEach(replace)
 
-  if (cache.has(body) || main.classList.contains('error')) {
+  if (!cache.has(body) || !main.classList.contains('error')) {
     history.pushState(...args)
   }
 
